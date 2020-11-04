@@ -1,0 +1,112 @@
+@import '../../../assets/sass/utils/variables';
+.container-center {
+    padding-top: 30px;
+}
+
+.title {
+    font-family: 'CronosPro-Regular';
+    font-weight: lighter;
+    width: 70%;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 45px;
+    font-size: 2em;
+}
+
+.intereses {
+    width: 90%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr;
+    grid-gap: 1.5rem 0rem;
+    margin: 30px auto;
+}
+
+.interes {
+    position: inherit;
+    background-color: #b8b8b8;
+    border-radius: 100px;
+    color: white;
+    display: block;
+    padding-top: 7px;
+    overflow: hidden;
+    padding-left: 15px;
+    min-height: 40px;
+    min-width: 150px;
+    max-width: 230px;
+    padding-right: 20px;
+    p {
+        display: inline;
+        margin-left: 10px;
+    }
+    i {
+        font-size: 1.5rem;
+    }
+    &:hover {
+        background-color: #999999;
+        // transform: translate(-3px, -3px);
+        cursor: pointer;
+    }
+}
+
+.botones {
+    width: 100%;
+    margin-top: -5px;
+    display: block;
+    .btn {
+        padding: 10px 10px;
+        margin: 20px auto;
+        font-size: 18px;
+    }
+}
+
+.btn-omitir {
+    background-color: #085ca4;
+    border: #085ca4;
+    &:hover {
+        background-color: #074f8f;
+    }
+}
+
+.btn-aceptar {
+    &:hover {
+        background-color: $color-secondary-hover;
+    }
+}
+
+.popover {
+    position: absolute;
+}
+
+.marcadoCategoria {
+    color: #085ca4;
+    font-weight: bold;
+}
+
+.marcadoSubCategoria {
+    background-color: #0065a3 !important;
+    border-radius: 100px !important;
+    a {
+        color: white !important;
+    }
+}
+
+@media(min-width: 450px) {
+    .intereses {
+        grid-template-columns: 1fr 1fr;
+    }
+    .botones {
+        display: flex;
+        justify-content: center;
+        .btn {
+            margin: 30px;
+        }
+    }
+}
+
+@media(min-width: 768px) {
+    .intereses {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

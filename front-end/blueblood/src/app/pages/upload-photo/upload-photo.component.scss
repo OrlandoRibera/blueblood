@@ -1,0 +1,100 @@
+@import "../../../assets/sass/utils/variables";
+.container-center {
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+.title {
+    margin-top: 30px;
+}
+
+.note {
+    margin-top: 10px;
+}
+
+.botones {
+    width: 100%;
+    margin-top: -5px;
+    display: block;
+    .btn {
+        padding: 10px 10px;
+        margin: 20px auto;
+        font-size: 18px;
+    }
+}
+
+.btn-secondary {
+    background-color: #085ca4;
+    border: #085ca4;
+    &:hover {
+        background-color: #074f8f;
+    }
+}
+
+.btn-aceptar {
+    &:hover {
+        background-color: $color-secondary-hover;
+    }
+}
+
+.uploadPhoto-container {
+    background: $color-primary;
+    color: $color-white;
+    width: 260px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 50px;
+    padding: 50px 30px 45px 30px;
+    cursor: pointer;
+}
+
+.img-container {
+    display: block;
+    margin: 0px auto;
+    border-radius: 100%;
+    width: 140px;
+    height: 138.9px;
+    min-width: 140px;
+    min-height: 138.9px;
+    margin-bottom: 10px;
+}
+
+.img {
+    width: 140px;
+    height: 138.9px;
+    background-size: cover;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.uploadPhoto-icon-container {
+    width: 140px;
+    height: 138.9px;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 100px;
+    border: 2px dashed $color-white;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    & i {
+        margin-top: 18px;
+    }
+}
+
+.container-input {
+    & input {
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+
+}
+
+@media(min-width: 450px) {
+    .botones {
+        display: flex;
+        justify-content: center;
+        .btn {
+            margin: 30px;
+        }
+    }
+}

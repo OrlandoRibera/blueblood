@@ -1,0 +1,32 @@
+<div class="main-container">
+    <div class="pulse-container"></div>
+    <div class="container-center container-center-imgFondo">
+        <app-sangre-tigo-logo [align]="'center'"></app-sangre-tigo-logo>
+        <h2 class="title title-center">Inicio de Sesión</h2>
+        <form class="form" #FormLoginUser="ngForm">
+
+            <input type="text" placeholder="Usuario" class="form-control" required [(ngModel)]="correo" #userEmail="ngModel" name="userEmail">
+
+            <span class="error-message error-message-center" [ngStyle]="{'visibility': userEmail.touched && !userEmail.valid ? 'visible' : 'hidden'}">
+              El correo no es valido
+            </span>
+
+            <input type="password" placeholder="Contraseña" class="form-control" required #userPassword="ngModel" name="userPassword" [(ngModel)]="password">
+
+            <span class="error-message error-message-center" [ngStyle]="{'visibility': userPassword.touched && !userPassword.valid ? 'visible' : 'hidden'}">
+              La contraseña es obligatoria
+            </span>
+
+            <div class="button">
+                <button class="btn btn-login" [disabled]="!FormLoginUser.form.valid" (click)="loginUser()">Iniciar</button>
+            </div>
+
+            <span class="error-message error-message-center" [ngStyle]="{'visibility': responseError ? 'visible' : 'hidden'}">
+              {{errorMessage}}
+            </span>
+        </form>
+        <div class="loading">
+            <mat-progress-bar mode="indeterminate" *ngIf="login"></mat-progress-bar>
+        </div>
+    </div>
+</div>

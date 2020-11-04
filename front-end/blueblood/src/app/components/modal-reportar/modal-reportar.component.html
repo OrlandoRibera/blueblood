@@ -1,0 +1,22 @@
+<h2 class="title">¿Cuál es el problema con la publicación?</h2>
+<div class="container">
+    <mat-radio-group aria-label="Select an option" (change)="changeValue($event)">
+
+        <mat-radio-button value="La publicación no coinciden con el ambiente corporativo">
+            La publicación no coincide con el ambiente corporativo
+        </mat-radio-button>
+
+        <mat-radio-button value="Es inapropiado">
+            Es inapropiado
+        </mat-radio-button>
+        <mat-radio-button value="Esta publicación es ofensiva, dañina, discriminatoria, falsa o ilegal">
+            Esta publicación es ofensiva, dañina, discriminatoria, falsa o ilegal
+        </mat-radio-button>
+
+    </mat-radio-group>  
+    <span class="validacion">{{validacion}}</span>
+    <div class="btn-container">
+        <button class="btn btn-small btn-backgroundGray" (click)="onNoClick()">Cancelar</button>
+        <button class="btn btn-small btn-backgroundPrimary" (click)="setInfo() ">Enviar</button>
+    </div>
+</div>

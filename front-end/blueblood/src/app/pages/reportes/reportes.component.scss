@@ -1,0 +1,75 @@
+@import "../../../assets/sass/utils/variables";
+
+.contenedor{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    &-izquierda{
+        width: 25%;
+        border-right: 1px solid #ccc;
+        min-height: 90vh;
+        padding: 10px;
+        max-height: 90vh;
+        overflow-y: auto;
+
+    }
+    &-derecha{
+        width: 70%;
+        padding: 10px;
+
+    }
+}
+.title{
+    margin-bottom: 10px;
+}
+.resumen-contenedor{
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    background: #0068bd1f;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 15px;
+    color: #434343;
+    &-revisada{
+        background: #ebebeb;
+    }
+}
+#post-container{
+    max-height: 60vh;
+    min-height: 60vh; 
+    overflow-y: auto; 
+    margin-bottom: 10px;
+    position: relative;
+}
+.message-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #434343;
+}
+.arrow{
+    text-align: center;
+    & i {
+        font-size: 128px;
+        color: $color-header-hv;
+        text-shadow: 1px 1px 3px #3c3c3c;
+    }
+}
+.message{
+    font-size: 24px;
+}
+.btn-container{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & button {
+        margin-right: 10px;
+    }
+}
+.motivo{
+    text-align: center;
+}

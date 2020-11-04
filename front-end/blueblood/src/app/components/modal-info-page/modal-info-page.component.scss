@@ -1,0 +1,75 @@
+@import "../../../assets/sass/utils/variables";
+
+.modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 1px 1px 5px #3c3c3c;
+  min-width: 250px;
+  width: 75%;
+  max-width: 800px;
+  z-index: 999;
+  animation: fadein 1s;
+  -moz-animation: fadein 1s; /* Firefox */
+  -webkit-animation: fadein 1s; /* Safari and Chrome */
+  -o-animation: fadein 1s; /* Opera */
+}
+
+.title {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: $color-header;
+  color: $color-white;
+  padding: 10px 2px;
+  text-align: center;
+  font-size: 18px;
+}
+.message-container {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: white;
+  padding: 15px 24px 24px 24px;
+}
+.btn-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & button {
+    margin-right: 10px;
+  }
+}
+
+b {
+  color: $color-header;
+}
+
+
+/* Efectos de aparición */
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

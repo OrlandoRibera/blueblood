@@ -1,0 +1,36 @@
+@import '../../../assets/sass/utils/variables';
+.container-center {
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.title {
+    font-family: 'Open-Sans-Light';
+    margin-top: 30px;
+}
+
+.form {
+    & input {
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+    & :first-child {
+        margin-top: 20px;
+    }
+}
+
+.loading {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+}
+
+.button {
+    width: 100%;
+    display: auto;
+    button {
+        margin: 0px auto;
+        margin-top: 15px !important;
+    }
+}

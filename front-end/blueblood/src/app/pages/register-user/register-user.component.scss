@@ -1,0 +1,22 @@
+.container-center {
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.title {
+    margin-top: 30px;
+}
+
+.form {
+    & input {
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+}
+
+.button {
+    width: 100%;
+    button {
+        margin: 0px auto;
+    }
+}

@@ -1,0 +1,30 @@
+<div class="main-container">
+    <div class="pulse-container"></div>
+    <div class="container-center container-center-imgFondo container-shadow">
+        <app-header></app-header>
+            <div class="loading">
+                <mat-progress-bar mode="indeterminate" *ngIf="searching"></mat-progress-bar>
+            </div>
+        <div class="content">
+            <h2 class="title">
+                <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                Resultado de la búsqueda "{{busqueda}}"
+            </h2>
+            <ul class="list">
+                <li *ngFor="let user of listUsers">
+                    <div class="img-container" (click)="redirectTo(user.codigo_id)">
+                        <div class="img" [style]="user.codigo_id | domSanitizer:'server'"></div>
+                    </div>
+                    <div class="info-user" (click)="redirectTo(user.codigo_id)">
+                        <span class="user-name">{{user.nick}}</span>
+                        
+                    </div>
+                </li>
+            </ul>
+            <div *ngIf="listUsers.length === 0">
+                <h2 class="message">No se encontraron resultados para tu búsqueda</h2>
+            </div>
+        </div>
+
+    </div>
+</div>

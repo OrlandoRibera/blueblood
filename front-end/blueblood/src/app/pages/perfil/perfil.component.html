@@ -1,0 +1,64 @@
+<div class="main-container">
+    <div class="pulse-container"></div>
+    <div class="container-center container-center-imgFondo container-shadow">
+        <app-header></app-header>
+        <div class="perfil-container">
+            <div class="img" [style]="user.codigo_id | domSanitizer:'server'">
+                <p class="edit-foto" [routerLink]="[ '/fotoPerfil', 'edit']" *ngIf="esMiPerfil">
+                    Editar
+                    <i class="fa fa-pencil"></i>
+                </p>
+            </div>
+            <div class="perfil-info">
+                <p class="perfil-nombre" title="{{user.nombre}}">{{user.nick}}</p>
+                <p class="perfil-area">{{user.area_id}} - {{user.sucursal_id}}</p>
+                <p class="perfil-globulo">
+                    <img src="./assets/img/globulo-fondoAzul.png" alt="">
+                    <span>Glóbulos: {{user.total_globulos}}</span>
+                </p>
+                <div *ngIf="hay_intereses" class="intereses_title">
+                    Intereses
+                    <span (click)="verIntereses()" [ngClass]="{'clicked': verMas}">
+                        Ver más
+                        <i class="fa fa-sort-down"></i>
+                    </span>
+                    <ul class="popover" [hidden]="!verMas">
+                        <li *ngFor="let interes_oculto of intereses">{{interes_oculto.grupo_id}} - {{interes_oculto.nombre_id}}</li>
+                    </ul>
+                </div>
+                <ul class="intereses">
+                    <li *ngFor="let interes of intereses | slice:0:3">{{interes.grupo_id}} - {{interes.nombre_id}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pulso-container">
+            Pulsos
+            <div class="contador">
+                <span>
+                        {{user.total_pulsos}}
+                </span>
+            </div>
+            <div class="pulso-barra">
+                <img *ngFor="let dummy of ' '.repeat(barra_pulsos).split(''), let x = index" src="./assets/img/pulso.png" alt="pulso">
+            </div>
+        </div>
+        <!-- <div style="margin-top: 40px;" *ngIf="esMiPerfil">
+            <app-publisher (return)="getPosts()"  [placeholder]="'Ganar juntos es...'"
+                    [padre]="'perfil'">
+            </app-publisher>
+        </div> -->
+
+        <div style="margin-top: 40px;" *ngIf="!esMiPerfil">
+            <!-- user.jefe_id === userLogged_id || userLogged_id === 1096 -->
+            <div *ngIf="esJefe">
+                <app-publisher (return)="getPosts()" [padre]="'perfil'"
+                    [idPerfil]="user.codigo_id" [placeholder]="'Quiero reconocer a...'">
+                </app-publisher>
+            </div>
+        </div>
+
+        <app-news [user]="userLogged_id" [postsList]=postsList></app-news>
+        
+    </div>
+</div>

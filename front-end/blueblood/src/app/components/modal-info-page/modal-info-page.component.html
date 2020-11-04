@@ -1,0 +1,20 @@
+<div class="modal-container" *ngIf="visible">
+  <h2 class="title">Mensaje de bienvenida</h2>
+  <div class="message-container">
+    ¡Bienvenidos!<br>
+     <b>Juntos Ganamos</b> es un sitio  diseñado para compartir nuestros logros, pasión y compromiso que busca destacar las conductas positivas y comportamientos que reflejan nuestro ADN Sangre Tigo.
+    <br>
+    <br>
+    Te  invitamos a registrarte y conocer los botones de interacción:
+    <br>
+    <br>
+    <b> Pulsos: </b> Son otorgados únicamente por Directores y Jefes.
+    <br>
+    <b>Glóbulos: </b> Son otorgados por todo el equipo, así podremos alentar el trabajo entre colegas.
+    <div class="btn-container">
+      <button class="btn btn-small btn-primary" (click)="visible = !visible">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</div>

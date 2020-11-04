@@ -1,0 +1,10 @@
+<div class="main-container">
+  <div class="pulse-container"></div>
+      <div class="container-center container-center-imgFondo container-shadow">
+      <app-header></app-header>
+      
+      <app-publisher (return)="getPosts()" [placeholder]="'Ganar juntos es...'"
+          [padre]="'feed'"></app-publisher>
+      <app-news [user]="user.codigo_id" [postsList]="postsList"></app-news>
+  </div>
+</div>

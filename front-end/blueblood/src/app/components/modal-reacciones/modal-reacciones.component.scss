@@ -1,0 +1,96 @@
+@import "../../../assets/sass/utils/variables";
+
+.tab-icon {
+    margin-right: 8px;
+    border-radius: 100%;
+    &-photo{
+        border-radius: 100%;
+        margin-right: 0;
+        position: absolute;
+        top: 31px;
+        left: 32px;
+    }
+}
+.mat-tab-list {
+    width: 100% !important;
+}
+.first-tab {
+    min-width: 15% !important;
+}
+.mat-tab-label {
+    min-width: 39% !important;
+    color: $color-primary !important;
+}
+.mat-tab-label.mat-tab-label-active {
+    background-color: transparent !important;
+}
+.mat-ink-bar {
+    background-color: $color-primary !important;
+}
+
+.message-modal{
+    color: gray;
+    font-size: 22px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 12px;
+}
+.list {
+    max-height: 460px;
+    overflow: auto;
+}
+.list li{
+    position: relative;
+    height: 100%;
+    border-bottom: 1px solid #ebebeb;;
+    min-height: 40px;
+    padding-top: 15px;
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.info-reactions{
+    margin-left: 45px;
+    & span{
+        display: block;
+        margin-left: 20px;
+    }
+}
+.user-name{
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+.pulse-type{
+    font-size: 12px;
+    color: gray;
+    min-height: 14.67px;
+    &-bold{
+        font-weight: bold;
+    }
+}
+
+.img-comment-container {
+    min-width: 50px;
+    min-height: 48.9px;
+    position: absolute;
+    top: 6px;
+    left: 0;
+    background: #fff;
+    border-radius: 100%;
+    padding: 2px;
+}
+
+.img-comment {
+    min-width: 30px;
+    min-height: 45px;
+    background-size: cover;
+    border-radius: 100%;
+}
+@media(min-width:375px){
+    .mat-tab-label {
+        min-width: 33% !important;
+    }   
+}

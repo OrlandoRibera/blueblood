@@ -1,0 +1,52 @@
+body {
+    font-family: 'CronosPro-Regular', sans-serif;
+}
+
+.title {
+    font-size: 20px;
+    color: $color-gray-dark;
+    &-center {
+        text-align: center;
+    }
+}
+
+.label-photo {
+    font-size: 24px;
+    &-center {
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+        width: max-content;
+    }
+}
+
+.note {
+    font-size: 16px;
+    font-style: italic;
+    &-center {
+        width: 315px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+#publicar {
+    font-family: 'CronosPro-Regular';
+}
+
+@media(min-width: 768px) {
+    .title {
+        font-size: 26px;
+    }
+}
+
+@media (min-width: 992px) {
+    .title {
+        font-size: 28px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .container-center {
+        width: 80em;
+    }
+}

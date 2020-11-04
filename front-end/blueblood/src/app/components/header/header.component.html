@@ -1,0 +1,114 @@
+<div class="header-fixed">
+    <div id="header-section" (click)="closeAllPopover()">
+        <div class="header-container">
+            <div class="home-container" routerLink="/noticias">
+                <i class="fa fa-heartbeat" aria-hidden="true" 
+                        (mouseover)="showTitleInicio = true"
+                        (mouseout)="showTitleInicio = false"></i>
+                <div    class="popover popover-inicio" 
+                        [hidden]="!showTitleInicio">
+                    <span>
+                        <!-- <i class="fa fa-circle" aria-hidden="true"></i> -->
+                        <a>Inicio</a>
+                    </span>
+                </div>
+            </div>
+            <div class="search-continer" [ngClass]="{'search-continer-max': inputWidthMax}">
+                <i class="fa fa-search" aria-hidden="true" (click)="search($event)"></i>
+                <input type="text" placeholder="Quiero reconocer a..." (keyup)="search($event)" (click)="toggleInput()"
+                        [(ngModel)]="contenidoBusqueda">
+                <i class="fa fa-times-circle close-icon" aria-hidden="true" *ngIf="inputWidthMax" (click)="closeInputMax($event)"></i>
+                <div *ngIf="buscador" class="buscador">
+                    <!-- <span *ngIf="searching">Buscando...</span> -->
+                    <ul class="list">
+                        <li *ngFor="let user of listUsers.slice(0,5)">
+                            <div class="img-container-search" (click)="redirectTo(user.codigo_id)">
+                                <div class="img-search" [style]="user.codigo_id | domSanitizer:'server'"></div>
+                            </div>
+                            <div class="info-user" (click)="redirectTo(user.codigo_id)">
+                                <span class="user-name">{{user.nick}}</span>
+                            </div>
+                        </li>
+                        <div *ngIf="listUsers.length >= 5" class="allResults-container"
+                                routerLink="/buscar/{{contenidoBusqueda}}">
+                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                            Ver más resultados
+                        </div>
+                    </ul>
+                    <div *ngIf="listUsers.length === 0">
+                        <h2 class="message">No se encontraron resultados para tu búsqueda</h2>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="options-container" [ngClass]="{'options-container-hidden': inputWidthMax}">
+                <div class="popover-header-container" style="float: left;" title="Ranking Reacciones">
+                    <i class="fa fa-trophy" (click)="verTopPersonas()" *ngIf="innerWidth < 1351"></i>
+                    <p style="position: relative; top: -25px; left: 30px;">|</p>
+                    <div class="top" *ngIf="verTop">
+                        <div class="pulsos">
+                            <p class="header">
+                                <i class="fa fa-trophy" style="font-size: 16px;"></i>
+                                Ranking
+                            </p>
+                            <div class="container">
+                                <p *ngIf="cargandoTopPulsos" style="color: #3c3c3c; font-weight: 100; text-align: center; margin: 10px 0px; ">Cargando...</p>
+                                <!-- <mat-spinner class="custom-spinner" diameter="30" *ngIf="cargandoTop"></mat-spinner> -->
+                                <div *ngIf="topPulsos !== null">
+                                    <div class="top-persona" *ngFor="let persona of topPulsos; index as i;">
+                                        <p class="nombre_top" [routerLink]="[ '/perfil', persona.codigo_id ]">{{i+1}}. {{persona.nombre}}</p>
+                                        <span>{{persona.total}}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p style="padding:10px">No existen pulsos registrados</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="globulos">
+                            <p class="header">
+                                Top Globulos
+                            </p>
+                            <div class="container">
+                                <p *ngIf="cargandoTopGlobulos" style="color: #3c3c3c; font-weight: 100; text-align: center; margin-top: 10px; ">Cargando...</p>
+                                <div class="top-persona" *ngFor="let persona of topGlobulos; index as i;">
+                                    <p>{{i+1}}. {{persona.nombre}}</p>
+                                    <span>{{persona.total}}</span>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- Toggle opciones perfil (click)="toggleProfileOptions()" -->
+                <div class="img-container" routerLink="/perfil">
+                    <div class="img" [style]="usuario_id | domSanitizer:'server'">
+                    </div>
+                    <div class="popover popover-profile" [hidden]="!showProfileOptions">
+                        <span routerLink="/perfil">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                            <a>Ver perfil</a>
+                        </span>
+                    </div>
+                </div>
+    
+                <div class="popover-header-container">
+                    <i class="fa fa-cog" aria-hidden="true" (click)="toggleSettings()" (mouseover)="toggleSettings()"></i>
+                    <div class="popover popover-settings" [hidden]="!showSettings">
+                        <span [routerLink]="'/reportes'" *ngIf="user.moderador">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                            <a>Ver reportados</a>
+                        </span>
+                        <span>
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                            <a (click)="logOut()">Cerrar Sesión</a>
+                        </span>
+                    </div>
+
+                </div>
+    
+            </div>
+    
+        </div>
+    </div>
+</div>
+<div class="margin"></div>

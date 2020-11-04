@@ -1,0 +1,45 @@
+<app-header></app-header>
+<div class="contenedor">
+    <div class="contenedor-izquierda">
+        <h2 class="title">Lista de reportados</h2>
+        <div class="resumen-contenedor" *ngFor="let post of listReportados" 
+            [ngClass]="post.censurado ? 'resumen-contenedor-revisada' : '' "
+            (click)="changePost(post)">
+            <h4>{{post.usuario_nm}}</h4>
+            <p>
+                {{post.motivo}}
+            </p>
+        </div>
+    </div>
+    <div class="contenedor-derecha">
+        <h2 class="title" *ngIf="post.codigo_id !== 0">
+            Publicación reportada
+            <hr>
+        </h2>
+        <div *ngIf="post.codigo_id !== 0" id="post-container">
+            <app-new [post]="post" [userID]="user_session" (updatePosts)="updatePost($event)"
+                (deletePosts)="deletePost()"></app-new>
+        </div>
+        <div *ngIf="post.codigo_id === 0" id="post-container">
+            <div class="message-container">
+                <p class="arrow">
+                    <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+
+                </p>
+                <p class="message">Selecciona una publicación</p>   
+            </div>
+        </div>
+        <p class="motivo" *ngIf="post.codigo_id !== 0"><b>Este post fue reportado por: </b>{{denunciante_nm}}</p>
+        <p class="motivo" *ngIf="post.codigo_id !== 0">
+            <b>Motivo: </b> {{motivo}}
+        </p>
+        <div class="btn-container" *ngIf="post.codigo_id !== 0">
+            <button class="btn btn-small btn-backgroundGray" (click)="rechazarReporte()">
+                Rechazar denuncia
+            </button>
+            <button class="btn btn-small btn-backgroundPrimary" (click)="aceptarReporte()">
+                Eliminar publicación
+            </button>
+        </div>
+    </div>
+</div>

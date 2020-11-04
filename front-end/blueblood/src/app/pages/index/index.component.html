@@ -1,0 +1,12 @@
+<div class="main-container">
+    <div class="container-center">
+        <app-modal-info-page></app-modal-info-page>
+        <!-- <img class="mensaje-index" src="../../../assets/img/juntos_ganamos.png" alt="Juntos Ganamos"> -->
+        <div class="btns-index">
+            <button class="btn btn-effect" id="btn-1" [routerLink]="[ '/login' ]">Iniciar sesión</button>
+            <!-- <button class="btn btn-effect" id="btn-2" [routerLink]="[ '/registrar' ]">Registrar</button> -->
+        </div>
+    </div>
+    <img *ngIf="!mobileBackground" src="./assets/img/Fondo JuntosGanamos.jpg" alt="Pulso" class="img-pulso-personas">
+    <img *ngIf="mobileBackground" src="./assets/img/Fondo JuntosGanamos-mobile.jpg" alt="Pulso" class="img-pulso-personas">
+</div>

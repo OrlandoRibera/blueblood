@@ -1,0 +1,52 @@
+<div class="main-container">
+    <div class="pulse-container"></div>
+    <div class="container-center container-center-imgFondo">
+        <app-sangre-tigo-logo [align]="'center'"></app-sangre-tigo-logo>
+        <h2 class="title title-center" *ngIf="!isEdit">¡Bienvenid@!</h2>
+        <h2 class="title title-center" *ngIf="isEdit">Editar foto de perfil</h2>
+
+        <form>
+            <label for="photo">
+            <div class="uploadPhoto-container">
+              <div *ngIf="!cargo && !isEdit" class="uploadPhoto-icon-container">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+              </div>
+
+              <div class="img-container" *ngIf="cargo">
+                <div class="img" [style]="image | domSanitizer:'local'"></div>
+              </div>
+              <div class="img-container" *ngIf="(cargo == false && isEdit == true)">
+                <div class="img" [style]="usuario_id | domSanitizer:'server'"></div>
+              </div>
+              <span class="label-photo label-photo-center">Sube tu foto</span>
+            </div>
+          </label>
+            <span class="note note-center">Recuerda que tu foto debe ser corporativa</span>
+
+            <div *ngIf="!isEdit" class="container-input">
+              <input  type="text" 
+                      placeholder="Escribe tu nombre completo" 
+                      class="form-control" 
+                      #userName="ngModel" 
+                      name="userName" 
+                      required
+                      [(ngModel)]="nombreUsuario">
+                      <!-- [ngStyle]="{'visibility': userName.touched 
+                      && !userName.valid ? 'visible' : 'hidden'}" -->
+              <span   class="error-message error-message-center">
+                      {{mensajeError}}
+              </span>
+            </div>
+
+            <div class="botones">
+                <button (click)="enviarFoto()"  class="btn btn-aceptar">Guardar</button>
+                <!-- <button [routerLink]="[ '/intereses' ]" class="btn btn-secondary" *ngIf="!isEdit">Omitir</button> -->
+                <button [routerLink]="[ '/perfil' ]" class="btn btn-secondary" *ngIf="isEdit">Cancelar</button>
+            </div>
+        </form>
+        <input  type="file" hidden
+                accept="image/*" 
+                (change)="changeListener($event)" 
+                name="photo" 
+                id="photo">
+    </div>

@@ -1,0 +1,43 @@
+<div class="main-container">
+    <div class="pulse-container"></div>
+    <div class="container-center container-center-imgFondo">
+        <app-sangre-tigo-logo [align]="'center'"></app-sangre-tigo-logo>
+        <h2 class="title title-center">Comencemos con tus datos</h2>
+        <form class="form" #FormRegisterUser="ngForm">
+
+            <input type="text" placeholder="Nombre completo" class="form-control" required #userName="ngModel" name="userName" [(ngModel)]="user.name">
+
+            <span class="error-message error-message-center" [ngStyle]="{'visibility': userName.touched 
+                    && !userName.valid ? 'visible' : 'hidden'}">
+                    El nombre es obligatorio
+      </span>
+
+            <input type="email" placeholder="Mail" class="form-control" required [(ngModel)]="user.email" #userEmail="ngModel" name="userEmail" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+
+            <span class="error-message error-message-center" [ngStyle]="{'visibility': userEmail.touched 
+                    && !userEmail.valid ? 'visible' : 'hidden'}">
+                    El correo no es valido
+      </span>
+
+            <input type="password" placeholder="Contraseña" class="form-control" required #userPassword="ngModel" name="userPassword" [(ngModel)]="user.password" minlength="6">
+
+            <span class="error-message error-message-center" [ngStyle]="{'visibility': userPassword.touched 
+                    && !userPassword.valid ? 'visible' : 'hidden'}">
+                    La contraseña debe tener al menos 6 caracteres
+                  </span>
+
+            <input type="password" placeholder="Confirmar contraseña" class="form-control" required #confirmPassword="ngModel" name="confirmPassword" [(ngModel)]="confirmPasswordText" pattern="{{user.password}}">
+
+            <span class="error-message error-message-center" [ngStyle]="{'visibility': confirmPassword.touched 
+        && !confirmPassword.valid ? 'visible' : 'hidden'}">
+        Las contraseñas no coinciden
+      </span>
+            <div class="button">
+                <button class="btn" (click)="registerUser()" [disabled]="!FormRegisterUser.form.valid">Registrar</button>
+                <span class="error-message error-message-center" [ngStyle]="{'visibility': responseError ? 'visible' : 'hidden'}">
+          {{errorMessage}}
+        </span>
+            </div>
+        </form>
+    </div>
+</div>

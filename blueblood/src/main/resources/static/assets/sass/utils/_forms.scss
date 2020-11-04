@@ -1,0 +1,93 @@
+.form-control {
+    border-radius: $border-radius;
+    height: 55px;
+    background: $color-gray-light;
+    border: 1px solid $color-gray-light;
+    width: 100%;
+    padding: 10px 10px 10px 50px;
+    outline: none;
+    font-size: 20px;
+    font-weight: normal;
+    display: block;
+    transition: all .2s;
+    &::placeholder {
+        color: $color-placeholder-gray;
+    }
+    &:focus {
+        box-shadow: 0px 0px 5px 0px rgba($color-primary, 1);
+    }
+}
+
+.error-message {
+    color: $color-error;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+    padding-top: 1px;
+    &-center {
+        text-align: center;
+    }
+}
+
+.btn {
+    display: block;
+    padding: 10px 20px;
+    min-width: 130px;
+    background: $color-secondary;
+    border-radius: $border-radius;
+    color: $color-white;
+    border: 1px solid $color-secondary;
+    font-size: 22px;
+    outline: none;
+    z-index: 1;
+    cursor: pointer;
+    &-effect {
+        -webkit-box-shadow: 0px 0px 58px -3px rgba(65, 201, 250, 1);
+        -moz-box-shadow: 0px 0px 58px -3x rgba(65, 201, 250, 1);
+        box-shadow: 0px 0px 58px -3px rgba(65, 201, 250, 1);
+    }
+    &-center {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -45%);
+    }
+    &-centerHorizontal {
+        margin: 0 auto;
+    }
+    &:disabled {
+        border: 1px solid $btn-disabled-border;
+        background-color: $btn-disabled-bg;
+        color: $btn-disabled-color;
+        cursor: no-drop;    
+    }
+    &-small{
+        padding: 6px 15px;
+        font-size: 17px;
+        min-width: 95px;
+    }
+    &-backgroundPrimary{
+        background: $color-primary;
+        border-color: $color-primary;
+    }
+    &-backgroundGray{
+        background: $color-gray-light;
+        border-color: $color-gray-light;
+        color: #464646;;
+    }
+}
+
+@media(min-width: 768px) {}
+
+@media (min-width: 992px) {
+    .form-control {
+        width: 600px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .form-control {
+        width: 700px;
+    }
+}

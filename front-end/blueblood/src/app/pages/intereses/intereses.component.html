@@ -1,0 +1,25 @@
+<div class="main-container">
+    <div class="pulse-container"></div>
+    <div class="container-center container-center-imgFondo container-shadow">
+        <app-sangre-tigo-logo [align]="'center'"></app-sangre-tigo-logo>
+        <h2 class="title">
+            ¡Elige tus intereses así te conectaremos con gente como vos!
+        </h2>
+        <div class="intereses">
+            <div class="interes" *ngFor="let interes of intereses" aria-hidden="true" (click)="mostrarInteres(interes.nombre_id)" id="idGroup{{interes.nombre_id}}">
+                <i class="fa fa-heart-o"></i>
+                <p title="{{interes.nombre_id}}">{{interes.nombre_id}}</p>
+                <div class="popover popover-post" hidden id="idInteresGroup{{interes.nombre_id}}">
+                    <span class="popover-option-icon" *ngFor="let tipo of interes.intereses" id="idInteres{{tipo.nombre_id}}" (click)="anadir_eliminar(tipo.nombre_id, interes.nombre_id)">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                            <a>{{tipo.nombre_id}}</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="botones">
+            <button class="btn btn-aceptar" (click)="submit()">Finalizar</button>
+            <button class="btn btn-omitir" (click)="saltar()">Omitir este paso</button>
+        </div>
+    </div>
+</div>

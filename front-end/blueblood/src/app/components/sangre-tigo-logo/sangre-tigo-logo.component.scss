@@ -1,0 +1,35 @@
+@import "../../../assets/sass/utils/variables";
+div {
+    overflow: auto;
+    width: 227px;
+}
+
+span {
+    color: $color-primary;
+    font-size: 28px;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 22px;
+    margin-right: 13px;
+    font-family: 'Open-Sans-Light', 'Arial';
+}
+
+.index {
+    margin-top: 30px;
+    font-size: 2em;
+    margin-right: -5px;
+    color: white !important;
+}
+
+img {
+    width: 230px;
+    float: right;
+}
+
+.imgWhite {
+    margin-top: 10px !important;
+}
+
+.center {
+    margin: 0px auto;
+}

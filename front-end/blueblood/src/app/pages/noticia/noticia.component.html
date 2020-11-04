@@ -1,0 +1,8 @@
+<div class="main-container">
+    <div class="pulse-container"></div>
+    <div class="container-center container-center-imgFondo container-shadow">
+        <app-header></app-header>
+        <app-new [post]="post" [userID]="user_id" (updatePosts)="updatePost($event)"
+            (deletePosts)="deletePost()"></app-new>
+    </div>
+</div>

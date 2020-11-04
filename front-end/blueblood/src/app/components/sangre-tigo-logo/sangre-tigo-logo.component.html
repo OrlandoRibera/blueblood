@@ -1,0 +1,5 @@
+<div #container [ngClass]="{'center': align === 'center'}">
+    <span [ngClass]="{index: color == 'white' }"></span>
+    <img [ngClass]="{imgWhite: color == 'white' }" 
+    [src]="color == 'white' && './assets/img/juntos_ganamos.png' || './assets/img/juntos_ganamos.png'" alt="Logo Tigo">
+</div>

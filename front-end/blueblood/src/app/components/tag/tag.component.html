@@ -1,0 +1,17 @@
+<div class="animated fadeIn fast">
+    <h3>Reconoce también a:</h3>
+    <tag-input [ngModel]="personasEtiquetadas"
+               [addOnBlur]="true"
+               [clearOnBlur]="true"
+               [onlyFromAutocomplete]="true"
+               [onTextChangeDebounce]="200"
+               [placeholder]="'Escribe otra etiqueta'"
+               [secondaryPlaceholder]="'Escribe una etiqueta'"
+               (onAdd)="onAdd($event)"
+               (onRemove)="onRemove($event)">
+        <tag-input-dropdown [autocompleteItems]="autocompleteItems"
+                            [displayBy]="'nick'"
+                            [identifyBy]="'codigo_id'">
+        </tag-input-dropdown>
+    </tag-input>
+</div>

@@ -1,0 +1,12 @@
+@import "./assets/sass/utils/variables";
+@import "./assets/sass/utils/functions";
+@import "./assets/sass/utils/mixins";
+@import "./assets/sass/utils/helpers";
+@import "./assets/sass/utils/typography";
+@import "./assets/sass/utils/global";
+@import "./assets/sass/utils/forms";
+@import "./assets/sass/utils/animations";
+html,
+body {
+    height: 100%;
+}

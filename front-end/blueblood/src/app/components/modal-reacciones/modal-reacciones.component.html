@@ -1,0 +1,68 @@
+<mat-tab-group color="accent" >
+    <mat-tab label="Todas:" class="first-tab">
+        <ul class="list">
+            <li *ngFor="let reaction of listReactions">
+                <div class="img-comment-container" [routerLink]="['/perfil/' + reaction.usuario_id]">
+                    <div class="img-comment" [style]="reaction.usuario_id | domSanitizer:'server'">
+                    </div>
+                </div>
+                <img class="tab-icon-photo" alt="Pulso" width=20 [src]="reaction.clase === 'Pulso' ? './assets/img/pulso-fondoAzul.png' : './assets/img/globulo-fondoAzul.png'">
+                <span class="info-reactions">
+                    <span class="user-name" (click)="onNoClick()" [routerLink]="['/perfil/' + reaction.usuario_id]">{{reaction.nick}}</span>
+                <span class="pulse-type" [ngClass]="{'pulse-type-bold' : reaction.tipo !== null }">
+                        {{reaction.tipo !== null ? reaction.tipo : 'Glóbulo'}}
+                    </span>
+                </span>
+            </li>
+        </ul>
+        <div *ngIf="listReactions.length === 0" class="message-modal">
+            Tu publicación no cuenta con reacciones
+        </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <img class="tab-icon" src="./assets/img/pulso-fondoAzul.png" alt="Pulso" width=20> Pulsos
+        </ng-template>
+        <ul class="list">
+            <li *ngFor="let reaction of listPulse">
+                <div class="img-comment-container" [routerLink]="['/perfil',reaction.usuario_id]">
+                    <div class="img-comment" [style]="reaction.usuario_id | domSanitizer:'server'">
+                    </div>
+                </div>
+                <img class="tab-icon-photo" alt="Pulso" width=20 src="./assets/img/pulso-fondoAzul.png">
+                <span class="info-reactions">
+                    <span class="user-name">{{reaction.nick}}</span>
+                <span class="pulse-type pulse-type-bold">
+                        {{reaction.tipo}}
+                    </span>
+                </span>
+            </li>
+        </ul>
+        <div *ngIf="listPulse.length === 0" class="message-modal">
+            Tu publicación no cuenta con pulsos
+        </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <img class="tab-icon" src="./assets/img/globulo-fondoAzul.png" alt="Globulo" width=20> Glóbulos
+        </ng-template>
+        <ul class="list">
+            <li *ngFor="let reaction of listGlobule">
+                <div class="img-comment-container" [routerLink]="['/perfil',reaction.usuario_id]">
+                    <div class="img-comment" [style]="reaction.usuario_id | domSanitizer:'server'">
+                    </div>
+                </div>
+                <img class="tab-icon-photo" alt="Pulso" width=20 src="./assets/img/globulo-fondoAzul.png">
+                <span class="info-reactions">
+                        <span class="user-name">{{reaction.nick}}</span>
+                <span class="pulse-type">
+                            Glóbulo
+                </span>
+                </span>
+            </li>
+        </ul>
+        <div *ngIf="listGlobule.length === 0" class="message-modal">
+            Tu publicación no cuenta con glóbulos
+        </div>
+    </mat-tab>
+</mat-tab-group>

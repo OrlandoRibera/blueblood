@@ -1,0 +1,135 @@
+<div class="news-container" [id]="'post' + post.codigo_id" (click)="closeAllPopover()"
+    [ngClass]="{'news-container-recognition': post.destino_id !== 0}"    
+    [style.padding]="post.tipo === 'imagen' && post.mensaje.length === 0 ? '40px 0px' : '30px 0px'">
+    <div class="img-container" [routerLink]="['/perfil',post.usuario_id]">
+        <div class="img" [style]="post.usuario_id | domSanitizer:'server'">
+        </div>
+    </div>
+    <div class="user-name" [ngClass]="{'nombre_post_ajeno': (post.destino_id != 0) ,
+    'user-name-small': post.destino_nm && post.destino_nm.length > 18}">
+        <p class="link user" [routerLink]="['/perfil',post.usuario_id]">{{post.usuario_nm}}</p>
+        <!-- <i *ngIf="post.destino_id != 0" class="fa fa-chevron-right" 
+        style="font-size: 12px;margin: 0px 5px;color: #3c3c3c;"></i> -->
+        <!-- <span class="link" [routerLink]="['/perfil',post.destino_id]" *ngIf="post.destino_id != 0">
+            {{post.destino_nm}}
+        </span> -->
+    </div>
+    <p class="post-date">
+        <span>
+            {{post.desc_fecha}}
+        </span>
+    </p>
+    <i class="fa fa-ellipsis-h" id="post-options" aria-hidden="true" (click)="togglePopoverPost()">
+    </i>
+
+    <div class="popover popover-post" [hidden]="!showPopoverPost">
+        <span class="popover-option-icon" *ngIf="userID === post.usuario_id" (click)="deletePost()">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <a>Eliminar post</a>
+        </span>
+        <span class="popover-option-icon" *ngIf="userID !== post.usuario_id"
+            (click)="showReportesModal()">
+            <i class="fa fa-ban" aria-hidden="true"></i>
+            <a>Reportar post</a>
+        </span>
+    </div>
+
+    <!-- Etiquetas -->
+    <p class="etiquetados-p" *ngIf="post.destino_nm">
+        <i class="fa fa-users" aria-hidden="true"></i>
+        <span [routerLink]="['/perfil', post.destino_id]">
+            {{post.destino_nm}}
+        </span>
+        <span *ngIf="post.etiquetados">
+            <span   *ngFor="let etiqueta of post.etiquetados"
+                    [routerLink]="['/perfil',etiqueta.usuario_id]">
+                    {{etiqueta.coalesce}}
+            </span>
+        </span>
+    </p>
+    <!-- Texto publicacion-->
+    <p *ngIf="post.mensaje !== undefined || post.mensaje.length > 0" 
+        class="message"
+        [ngStyle]="{'margin-top': post.etiquetados === null && post.destino_nm === null ? '-20px' : '5px'}">
+        {{post.mensaje}}
+    </p>
+    <!-- Contenido multimedia -->
+    <div *ngIf="post.tipo === 'imagen'" class="multimedia-content">
+        <img src="{{apiUrl}}/posts/{{post.codigo_id}}/media" 
+            alt="Imagen" class="animated fadeIn fast">
+    </div>
+
+    <div *ngIf="post.tipo === 'video'" class="multimedia-content">
+        <video width="200" height="240" controls autoplay>
+            <source src="./assets/img/videoprueba.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    </div>
+    
+    <!-- Pulsos y globulos -->
+    <div class="pulsos-position">
+        <div class="pulsos-container pulsos-container-ml" (mouseover)="showPopoverPulse = true">
+            <img *ngIf="post.pulseado" (click)="togglePulsePopover()" src="./assets/img/pulso-fondoAzul.png" alt="Pulso">
+            <img *ngIf="!post.pulseado" (click)="togglePulsePopover()" src="./assets/img/pulso-fondoBlanco.png" alt="Pulso">
+            <span (click)="showReactionsModal()">{{post.pulsos}}</span>
+        </div>
+        <div class="pulsos-container">
+            <img *ngIf="post.globuleado" (click)="changeGlobulo()" src="./assets/img/globulo-fondoAzul.png" alt="Globulo">
+            <img *ngIf="!post.globuleado" (click)="changeGlobulo()" src="./assets/img/globulo-fondoBlanco.png" alt="Globulo">
+            <span (click)="showReactionsModal()">{{post.globulos}}</span>
+        </div>
+        <!-- Popover para pulsos-->
+        <!-- (mouseout)="showPopoverPulse = false" (mouseover)="showPopoverPulse = true" -->
+        <div class="popover popover-pulse" [hidden]="!showPopoverPulse">
+            <span class="popover-option-icon popover-option-icon-small" (click)="changePulso('Tenemos sangre Tigo')" (click)="showPopoverPulse = false">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+                <a>Tenemos <strong>sangre Tigo</strong></a>
+            </span>
+            <span class="popover-option-icon popover-option-icon-small" (click)="changePulso('Somos 1 solo Tigo')" (click)="showPopoverPulse = false">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+                <a>Somos <strong>1 solo Tigo</strong></a>
+            </span>
+            <span class="popover-option-icon popover-option-icon-small" (click)="changePulso('Hacemos que suceda de la forma correcta')" (click)="showPopoverPulse = false">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+                <a>Hacemos que suceda de la <strong>forma correcta</strong> </a>
+            </span>
+            <span class="popover-option-icon popover-option-icon-small" (click)="changePulso('Damos el 1000% por nuestros clientes')" (click)="showPopoverPulse = false">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+                <a>Damos el <strong>1000%</strong> por <strong>nuestros clientes</strong></a>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="comments-container"
+    [ngClass]="{'comments-container-recognition': post.destino_id !== 0}">
+    <span class="title-comments" id="postComents{{post.codigo_id}}">
+        Celebra tu tambien este logro
+        <i class="fa fa-comments" aria-hidden="true"></i>
+    </span>
+    <div *ngFor="let comment of comentariosMostrados" class="comment-container">
+        <div class="img-comment-container" [routerLink]="['/perfil',comment.usuario_id]">
+            <div class="img-comment" [style]="comment.usuario_id | domSanitizer:'server'">
+            </div>
+        </div>
+        <div class="info-comment-container">
+            <p class="comment-name link" [routerLink]="['/perfil',comment.usuario_id]">
+                {{comment.usuario_nm}}
+            </p>
+            <i class="fa fa-circle" aria-hidden="true"></i>
+            <p class="comment-date">{{comment.fecha | date:'dd/MM/yyyy'}}</p>
+        </div>
+        <p class="comment">{{comment.comentario}}</p>
+    </div>
+    <div class="verMas" (click)="verMas()" *ngIf="hayMas">
+        <p *ngIf="!verMasComentarios" style="display: inline;">{{texto}}</p>
+        <i *ngIf="!verMasComentarios" class="fa fa-sort-down"></i>
+        <a *ngIf="verMasComentarios" href="{{url}}#post{{post.codigo_id}}">{{texto}}</a>
+        <i *ngIf="verMasComentarios" class="fa fa-sort-up" [ngClass]="{'moveDown': verMasComentarios}"></i>
+    </div>
+    <div id="publicador-container">
+        <textarea matInput placeholder="Escribe aquí..." 
+            cdkTextareaAutosize [(ngModel)]="comment" #autosize="cdkTextareaAutosize" 
+            id="publicar"  (keyup.enter)="addComment()"></textarea>
+        <i class="fa fa-paper-plane" aria-hidden="true" (click)="addComment()"></i>
+    </div>
+</div>

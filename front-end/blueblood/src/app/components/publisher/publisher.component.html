@@ -1,0 +1,72 @@
+<div class="publisher-container">
+    <div class="img-container">
+        <div class="img" [style]="userInSession.codigo_id | domSanitizer:'server'"></div>
+    </div>
+    <div id="publicador-container">
+        <textarea matInput [placeholder]="placeholder" cdkTextareaAutosize 
+            [(ngModel)]="contenido" #autosize="cdkTextareaAutosize" id="publicar"></textarea>
+        <button (click)="openInput()" class="adjuntar" *ngIf="padre !== 'perfil'">
+            <img src="./assets/img/paper-clip.png" alt="paper-clip">
+        </button>
+
+        <button (click)="openTags()"    
+                class="etiquetar" 
+                *ngIf="idPerfil && idPerfil !== userInSession.codigo_id">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+        </button>
+
+        <input type="file" accept="image/*" (change)="changeListener($event)" name="photo" 
+            id="photo" hidden>
+    </div>
+    <div class="pictures" *ngIf="foto">
+        <button class="close" (click)="eliminarFoto()">
+            <i class="fa fa-window-close"></i>
+        </button>
+        <img [src]="foto" alt="foto" class="foto-class">
+    </div>
+
+    <div class="tags-container" *ngIf="showTags">
+        <app-tag    *ngIf="idPerfil && idPerfil !== userInSession.codigo_id"
+                    (eventoPersonasEtiquetadas)="getEtiquetados($event)"></app-tag>
+    </div>
+
+    <div class="pulse-cards" 
+        *ngIf="idPerfil && idPerfil !== userInSession.codigo_id" >
+
+        <div class="card" (click)="selectCard('Tenemos sangre Tigo')"
+            [ngClass]="{'card-selected': pulso === 'Tenemos sangre Tigo'}">
+            <a>Tenemos <strong>sangre Tigo</strong></a>
+        </div>
+        <div class="card" (click)="selectCard('Somos 1 solo Tigo')"
+        [ngClass]="{'card-selected': pulso === 'Somos 1 solo Tigo'}">
+            <a>Somos <strong>1 solo Tigo</strong></a>
+        </div>
+        <div class="card" 
+            (click)="selectCard('Hacemos que suceda de la forma correcta')"
+            [ngClass]="{'card-selected': pulso === 'Hacemos que suceda de la forma correcta'}">
+            <a>Hacemos que suceda de la <strong>forma correcta</strong> </a>
+        </div>
+        <div class="card" 
+            (click)="selectCard('Damos el 1000% por nuestros clientes')"
+            [ngClass]="{'card-selected': pulso === 'Damos el 1000% por nuestros clientes'}">
+            <a>Damos el <strong>1000%</strong> por <strong>nuestros clientes</strong></a>
+        </div>
+        
+    </div>
+    <div class="card card-special"
+            *ngIf="idPerfil && userInSession.codigo_id === 1096 && idPerfil !== userInSession.codigo_id"  
+            (click)="selectCard('Sangre tigo')"
+            [ngClass]="{'card-selected': pulso === 'Sangre tigo'}">
+            <a>Sangre <strong>tigo</strong> </a>
+    </div>
+
+    <button class="btn btn-publicar" *ngIf="padre === 'feed' && (foto || contenido)" (click)="publicar()" 
+        [ngClass]="{'disabled': btn_deshabilitar}" [disabled]="btn_deshabilitar">
+        <i class="fa fa-paper-plane"></i>Publicar
+    </button>
+
+    <button class="btn btn-publicar" *ngIf="padre === 'perfil'" (click)="publicar()" 
+        [ngClass]="{'disabled': btn_deshabilitar}" [disabled]="btn_deshabilitar">
+        <i class="fa fa-paper-plane"></i>Publicar
+    </button>
+</div>
